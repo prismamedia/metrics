@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <defaults autowire="false" autoconfigure="false" public="false" />
+
+        <service id="PrismaMedia\MetricsBundle\MetricAggregator">
+            <argument type="tagged" tag="prisma_media.metric" />
+        </service>
+
+        <service id="PrismaMedia\MetricsBundle\MetricRenderer"/>
+
+        <service id="PrismaMedia\MetricsBundle\Controller\MetricsController">
+            <argument type="service" id="PrismaMedia\MetricsBundle\MetricAggregator" />
+            <argument type="service" id="PrismaMedia\MetricsBundle\MetricRenderer" />
+            <tag name="controller.service_arguments"/>
+        </service>
+    </services>
+</container>
