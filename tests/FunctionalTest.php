@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FunctionalTest extends WebTestCase
 {
-    public function test_endpoint_metrics()
+    public function test_endpoint_metrics(): void
     {
         $client = static::createClient();
 

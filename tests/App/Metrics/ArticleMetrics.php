@@ -3,14 +3,14 @@
 namespace PrismaMedia\MetricsBundle\Tests\App\Metrics;
 
 use PrismaMedia\MetricsBundle\Metric;
-use PrismaMedia\MetricsBundle\MetricProvider;
+use PrismaMedia\MetricsBundle\MetricGenerator;
 
-class ArticleMetrics implements MetricProvider
+class ArticleMetrics implements MetricGenerator
 {
     /**
      * {@inheritdoc}
      */
-    public function getMetrics()
+    public function getMetrics(): \Generator
     {
         yield new Metric('article_total', 42, ['brand' => 'Capital']);
         yield new Metric('article_total', 876, ['brand' => 'Femme Actuelle']);

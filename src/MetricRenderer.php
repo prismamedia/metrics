@@ -9,7 +9,7 @@ class MetricRenderer
      *
      * @return string
      */
-    public function render(Metric $metric)
+    public function render(Metric $metric): string
     {
         $labels = '';
         if ($metric->hasLabels()) {

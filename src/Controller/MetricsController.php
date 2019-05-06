@@ -2,14 +2,14 @@
 
 namespace PrismaMedia\MetricsBundle\Controller;
 
-use PrismaMedia\MetricsBundle\MetricProvider;
+use PrismaMedia\MetricsBundle\MetricGenerator;
 use PrismaMedia\MetricsBundle\MetricRenderer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MetricsController
 {
     /**
-     * @var MetricProvider
+     * @var MetricGenerator
      */
     protected $metrics;
 
@@ -18,16 +18,13 @@ class MetricsController
      */
     private $metricRenderer;
 
-    public function __construct(MetricProvider $metrics, MetricRenderer $metricRenderer)
+    public function __construct(MetricGenerator $metrics, MetricRenderer $metricRenderer)
     {
         $this->metrics = $metrics;
         $this->metricRenderer = $metricRenderer;
     }
 
-    /**
-     * @return Response
-     */
-    public function __invoke()
+    public function __invoke(): StreamedResponse
     {
         $response = new StreamedResponse();
         $response->headers->set('Content-Type', 'text/plain; charset=utf-8');

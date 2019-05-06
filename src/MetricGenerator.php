@@ -2,10 +2,10 @@
 
 namespace PrismaMedia\MetricsBundle;
 
-interface MetricProvider
+interface MetricGenerator
 {
     /**
      * @return \Generator<Metric>
      */
-    public function getMetrics();
+    public function getMetrics(): \Generator;
 }

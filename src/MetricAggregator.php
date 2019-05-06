@@ -2,30 +2,31 @@
 
 namespace PrismaMedia\MetricsBundle;
 
-class MetricAggregator implements MetricProvider
+/**
+ * Class MetricAggregator.
+ */
+class MetricAggregator implements MetricGenerator
 {
     /**
-     * @var MetricProvider[]
+     * @var MetricGenerator[]
      */
-    private $metricProviders;
+    private $metricGenerators;
 
     /**
-     * @param \Traversable $metricProviders
+     * @param \Traversable $metricGenerators
      */
-    public function __construct(\Traversable $metricProviders)
+    public function __construct(\Traversable $metricGenerators)
     {
-        $this->metricProviders = $metricProviders;
+        $this->metricGenerators = $metricGenerators;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getMetrics()
+    public function getMetrics(): \Generator
     {
-        foreach ($this->metricProviders as $metricProvider) {
-            foreach ($metricProvider->getMetrics() as $metric) {
-                yield $metric;
-            }
+        foreach ($this->metricGenerators as $metricProvider) {
+            yield from $metricProvider->getMetrics();
         }
     }
 }

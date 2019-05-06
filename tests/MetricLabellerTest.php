@@ -4,15 +4,15 @@ namespace PrismaMedia\MetricsBundle\Tests;
 
 use PHPUnit\Framework\TestCase;
 use PrismaMedia\MetricsBundle\Metric;
+use PrismaMedia\MetricsBundle\MetricGenerator;
 use PrismaMedia\MetricsBundle\MetricLabeller;
-use PrismaMedia\MetricsBundle\MetricProvider;
 
 class MetricLabellerTest extends TestCase
 {
-    public function test_it_should_add_static_labels()
+    public function test_it_should_add_static_labels(): void
     {
-        $metrics = new class() implements MetricProvider {
-            public function getMetrics()
+        $metrics = new class() implements MetricGenerator {
+            public function getMetrics(): \Generator
             {
                 yield new Metric('article_total', 42, ['brand' => 'capital']);
                 yield new Metric('article_total', 876, ['env' => 'conflict', 'brand' => 'femmeactuelle']);
@@ -22,7 +22,7 @@ class MetricLabellerTest extends TestCase
 
         $labeller = new MetricLabeller($metrics, ['env' => 'staging']);
 
-        $this->assertInstanceOf('Generator', $labeller->getMetrics());
+        $this->assertInstanceOf(\Generator::class, $labeller->getMetrics());
         $this->assertCount(3, $labeller->getMetrics());
         $metrics = iterator_to_array($labeller->getMetrics());
 
@@ -37,10 +37,10 @@ class MetricLabellerTest extends TestCase
         $this->assertSame(['env' => 'staging'], $metrics[2]->getLabels());
     }
 
-    public function test_it_should_accept_empty_metrics()
+    public function test_it_should_accept_empty_metrics(): void
     {
-        $metrics = new class() implements MetricProvider {
-            public function getMetrics()
+        $metrics = new class() implements MetricGenerator {
+            public function getMetrics(): \Generator
             {
                 if (false) {
                     yield;

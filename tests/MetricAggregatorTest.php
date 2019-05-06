@@ -5,29 +5,29 @@ namespace PrismaMedia\MetricsBundle\Tests;
 use PHPUnit\Framework\TestCase;
 use PrismaMedia\MetricsBundle\Metric;
 use PrismaMedia\MetricsBundle\MetricAggregator;
-use PrismaMedia\MetricsBundle\MetricProvider;
+use PrismaMedia\MetricsBundle\MetricGenerator;
 
 class MetricAggregatorTest extends TestCase
 {
-    public function testGetMetrics()
+    public function testGetMetrics(): void
     {
-        $metrics1 = new class() implements MetricProvider {
-            public function getMetrics()
+        $metrics1 = new class() implements MetricGenerator {
+            public function getMetrics(): \Generator
             {
                 yield new Metric('article_total', 42, ['brand' => 'capital']);
                 yield new Metric('article_total', 876, ['brand' => 'femmeactuelle', 'env' => 'conflict']);
             }
         };
 
-        $metrics2 = new class() implements MetricProvider {
-            public function getMetrics()
+        $metrics2 = new class() implements MetricGenerator {
+            public function getMetrics(): \Generator
             {
                 yield new Metric('app_total', 983);
             }
         };
 
-        $metrics3 = new class() implements MetricProvider {
-            public function getMetrics()
+        $metrics3 = new class() implements MetricGenerator {
+            public function getMetrics(): \Generator
             {
                 if (false) {
                     yield;

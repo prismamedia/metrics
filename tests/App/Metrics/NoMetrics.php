@@ -2,14 +2,14 @@
 
 namespace PrismaMedia\MetricsBundle\Tests\App\Metrics;
 
-use PrismaMedia\MetricsBundle\MetricProvider;
+use PrismaMedia\MetricsBundle\MetricGenerator;
 
-class NoMetrics implements MetricProvider
+class NoMetrics implements MetricGenerator
 {
     /**
      * {@inheritdoc}
      */
-    public function getMetrics()
+    public function getMetrics(): \Generator
     {
         if (false) {
             yield;
