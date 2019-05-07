@@ -9,7 +9,7 @@ use PrismaMedia\Metrics\MetricGenerator;
 
 class MetricAggregatorTest extends TestCase
 {
-    public function testGetMetrics(): void
+    public function testGetMetricsShouldMergeInjectedGenerators(): void
     {
         $metrics1 = new class() implements MetricGenerator {
             public function getMetrics(): \Traversable

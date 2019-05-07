@@ -9,7 +9,7 @@ use PrismaMedia\Metrics\MetricLabeller;
 
 class MetricLabellerTest extends TestCase
 {
-    public function test_it_should_add_static_labels(): void
+    public function testGetMetricsShouldAddStaticLabels(): void
     {
         $metrics = new class() implements MetricGenerator {
             public function getMetrics(): \Traversable
@@ -37,7 +37,7 @@ class MetricLabellerTest extends TestCase
         $this->assertSame(['env' => 'staging'], $metrics[2]->getLabels());
     }
 
-    public function test_it_should_accept_empty_metrics(): void
+    public function testGetMetricsShouldAcceptEmptyGenerator(): void
     {
         $metrics = new class() implements MetricGenerator {
             public function getMetrics(): \Traversable

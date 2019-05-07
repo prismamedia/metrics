@@ -1,5 +1,5 @@
 {
-    "name": "prismamedia/metrics-bundle",
+    "name": "prismamedia/metrics",
     "description": "Prometheus metrics exporter",
     "keywords": ["metrics", "prometheus", "bundle"],
     "type": "symfony-bundle",

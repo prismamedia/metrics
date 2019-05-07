@@ -24,7 +24,7 @@ class MetricsController
         $this->metricRenderer = $metricRenderer;
     }
 
-    public function __invoke() :StreamedResponse
+    public function __invoke(): StreamedResponse
     {
         $response = new StreamedResponse();
         $response->headers->set('Content-Type', 'text/plain; charset=utf-8');

@@ -1,13 +1,16 @@
-# Expose metrics to Prometheus
+# Prometheus exporter for your own metrics
 
+This package is a Symfony bundle for [exporting metrics to Prometheus](https://prometheus.io/docs/instrumenting/writing_exporters/).
+Create your own `MetricGenerator` services to generate values on-demand en expose them under the `/metrics` endpoint.
 
+*It does not expose any metric, you have to code your own.*
 
 ## Usage
 
 Require the package
 
 ```
-composer require prismamedia/metrics-bundle
+composer require prismamedia/metrics
 ```
 
 Register the bundle
@@ -16,7 +19,7 @@ Register the bundle
 # config/bundles.php
 return [
     // ...
-    PrismaMedia\MetricsBundle\PrismaMediaMetricsBundle::class => ['all' => true],
+    PrismaMedia\Metrics\Bundle\PrismaMediaMetricsBundle::class => ['all' => true],
     // ...
 ];
 ```
@@ -29,7 +32,16 @@ metrics:
     resource: '@PrismaMediaMetricsBundle/Resources/config/routes.yaml'
 ```
 
-### Implement your own metric provider
+### Implement your own metric generator
+
+Your metrics are generated on demand by a class implementing
+
+The best practice is to create a distinct classes for distinct metric names.
+Each class can returns several values with distinct labels.
+
+In the following example, we expose a metric named `app_article_total`
+labelled with each `status`. In Prometheus (& Grafana), the values can be added
+in order to get the overall total.
 
 ```php
 <?php
@@ -37,23 +49,28 @@ metrics:
 
 namespace App\Metrics;
 
-use PrismaMedia\MetricsBundle\Metric;
-use PrismaMedia\MetricsBundle\MetricProvider;
-use PrismaMedia\MetricsBundle\MetricProvider\ConnectionAwareMetricProvider;
+use Doctrine\DBAL\Connection;
+use PrismaMedia\Metrics\Metric;
+use PrismaMedia\Metrics\MetricGenerator;
 
-class ArticleCountMetric implements MetricProvider
+class ArticleCountMetric implements MetricGenerator
 {
-    // Inject the Doctrine DBAL Connection
-    use ConnectionAwareMetricProvider;
-    
-    public function getMetrics()
+    private $connection;
+    public function __construct(Connection $connection)
     {
+        $this->connection = $connection;
+    }
+
+    public function getMetrics(): \Traversable
+    {
+        // SELECT a.status, COUNT(*) as total FROM article GROUP BY a.status
         $qbd = $this->connection->createQueryBuilder();
         $qbd->select('a.status, COUNT(*) as total')
             ->from('article', 'a')
             ->groupBy('a.status');
 
         foreach ($qbd->execute()->fetchAll() as $row) {
+            // app_article_total{status=<status>} <total>
             yield new Metric('app_article_total', (int) $row['total'], [
                 'status' => $row['status'],
             ]);
@@ -62,6 +79,8 @@ class ArticleCountMetric implements MetricProvider
 }
 ```
 
+Declare the service in Symfony with the tag `prisma_media.metric`.
+
 ```yaml
 # config/services.yaml
 services:
@@ -69,6 +88,8 @@ services:
         resource: '../src/Metrics'
         tags: ['prisma_media.metric']
 ```
+
+The `/metrics` endpoint will return something like this:
 
 ```
 # curl https://localhost:8080/metrics
