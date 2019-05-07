@@ -1,8 +1,8 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests\App;
+namespace PrismaMedia\Metrics\Tests\Bundle\App;
 
-use PrismaMedia\MetricsBundle\PrismaMediaMetricsBundle;
+use PrismaMedia\Metrics\Bundle\PrismaMediaMetricsBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\FileLocator;
@@ -45,6 +45,6 @@ class TestKernel extends Kernel
             ->setAutoconfigured(true)
             ->setAutowired(true)
             ->setTags(['prisma_media.metric' => []]);
-        $loader->registerClasses($prototype, 'PrismaMedia\\MetricsBundle\\Tests\\App\\Metrics\\', 'Metrics/*');
+        $loader->registerClasses($prototype, 'PrismaMedia\\Metrics\\Tests\\Bundle\\App\\Metrics\\', 'Metrics/*');
     }
 }

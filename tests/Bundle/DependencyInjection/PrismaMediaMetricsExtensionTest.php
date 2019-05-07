@@ -1,13 +1,13 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests;
+namespace PrismaMedia\Metrics\Tests\Bundle\DependencyInjection;
 
 use PHPUnit\Framework\TestCase;
-use PrismaMedia\MetricsBundle\Controller\MetricsController;
-use PrismaMedia\MetricsBundle\DependencyInjection\PrismaMediaMetricsExtension;
-use PrismaMedia\MetricsBundle\MetricAggregator;
-use PrismaMedia\MetricsBundle\MetricRenderer;
-use PrismaMedia\MetricsBundle\PrismaMediaMetricsBundle;
+use PrismaMedia\Metrics\Bundle\Controller\MetricsController;
+use PrismaMedia\Metrics\Bundle\DependencyInjection\PrismaMediaMetricsExtension;
+use PrismaMedia\Metrics\Bundle\PrismaMediaMetricsBundle;
+use PrismaMedia\Metrics\MetricAggregator;
+use PrismaMedia\Metrics\MetricRenderer;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 

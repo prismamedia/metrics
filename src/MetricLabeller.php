@@ -1,6 +1,6 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle;
+namespace PrismaMedia\Metrics;
 
 /**
  * Adds static labels to the metrics.
@@ -30,7 +30,7 @@ class MetricLabeller implements MetricGenerator
     /**
      * {@inheritdoc}
      */
-    public function getMetrics(): \Generator
+    public function getMetrics(): \Traversable
     {
         /** @var Metric $metric */
         foreach ($this->metricProvider->getMetrics() as $metric) {

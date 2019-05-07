@@ -3,15 +3,15 @@
     <services>
         <defaults autowire="false" autoconfigure="false" public="false" />
 
-        <service id="PrismaMedia\MetricsBundle\MetricAggregator">
+        <service id="PrismaMedia\Metrics\MetricAggregator">
             <argument type="tagged" tag="prisma_media.metric" />
         </service>
 
-        <service id="PrismaMedia\MetricsBundle\MetricRenderer"/>
+        <service id="PrismaMedia\Metrics\MetricRenderer"/>
 
-        <service id="PrismaMedia\MetricsBundle\Controller\MetricsController">
-            <argument type="service" id="PrismaMedia\MetricsBundle\MetricAggregator" />
-            <argument type="service" id="PrismaMedia\MetricsBundle\MetricRenderer" />
+        <service id="PrismaMedia\Metrics\Bundle\Controller\MetricsController">
+            <argument type="service" id="PrismaMedia\Metrics\MetricAggregator" />
+            <argument type="service" id="PrismaMedia\Metrics\MetricRenderer" />
             <tag name="controller.service_arguments"/>
         </service>
     </services>

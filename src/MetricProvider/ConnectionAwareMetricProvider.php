@@ -1,6 +1,6 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\MetricProvider;
+namespace PrismaMedia\Metrics\MetricProvider;
 
 use Doctrine\DBAL\Connection;
 

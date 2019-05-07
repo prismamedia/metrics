@@ -1,18 +1,18 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests;
+namespace PrismaMedia\Metrics\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PrismaMedia\MetricsBundle\Metric;
-use PrismaMedia\MetricsBundle\MetricGenerator;
-use PrismaMedia\MetricsBundle\MetricLabeller;
+use PrismaMedia\Metrics\Metric;
+use PrismaMedia\Metrics\MetricGenerator;
+use PrismaMedia\Metrics\MetricLabeller;
 
 class MetricLabellerTest extends TestCase
 {
     public function test_it_should_add_static_labels(): void
     {
         $metrics = new class() implements MetricGenerator {
-            public function getMetrics(): \Generator
+            public function getMetrics(): \Traversable
             {
                 yield new Metric('article_total', 42, ['brand' => 'capital']);
                 yield new Metric('article_total', 876, ['env' => 'conflict', 'brand' => 'femmeactuelle']);
@@ -40,7 +40,7 @@ class MetricLabellerTest extends TestCase
     public function test_it_should_accept_empty_metrics(): void
     {
         $metrics = new class() implements MetricGenerator {
-            public function getMetrics(): \Generator
+            public function getMetrics(): \Traversable
             {
                 if (false) {
                     yield;

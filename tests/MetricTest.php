@@ -1,9 +1,9 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests;
+namespace PrismaMedia\Metrics\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PrismaMedia\MetricsBundle\Metric;
+use PrismaMedia\Metrics\Metric;
 
 class MetricTest extends TestCase
 {

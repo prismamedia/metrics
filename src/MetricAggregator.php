@@ -1,9 +1,9 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle;
+namespace PrismaMedia\Metrics;
 
 /**
- * Class MetricAggregator.
+ * Aggregate metrics from multiple generators.
  */
 class MetricAggregator implements MetricGenerator
 {
@@ -23,7 +23,7 @@ class MetricAggregator implements MetricGenerator
     /**
      * {@inheritdoc}
      */
-    public function getMetrics(): \Generator
+    public function getMetrics(): \Traversable
     {
         foreach ($this->metricGenerators as $metricProvider) {
             yield from $metricProvider->getMetrics();

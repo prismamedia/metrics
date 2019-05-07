@@ -1,11 +1,11 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle;
+namespace PrismaMedia\Metrics;
 
 interface MetricGenerator
 {
     /**
-     * @return \Generator<Metric>
+     * @return \Traversable<Metric>
      */
-    public function getMetrics(): \Generator;
+    public function getMetrics(): \Traversable;
 }

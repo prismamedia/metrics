@@ -1,9 +1,9 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Controller;
+namespace PrismaMedia\Metrics\Bundle\Controller;
 
-use PrismaMedia\MetricsBundle\MetricGenerator;
-use PrismaMedia\MetricsBundle\MetricRenderer;
+use PrismaMedia\Metrics\MetricGenerator;
+use PrismaMedia\Metrics\MetricRenderer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class MetricsController
@@ -24,7 +24,7 @@ class MetricsController
         $this->metricRenderer = $metricRenderer;
     }
 
-    public function __invoke(): StreamedResponse
+    public function __invoke() :StreamedResponse
     {
         $response = new StreamedResponse();
         $response->headers->set('Content-Type', 'text/plain; charset=utf-8');

@@ -10,15 +10,15 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <env name="KERNEL_CLASS" value="PrismaMedia\MetricsBundle\Tests\App\TestKernel" />
-        <!--<env name="SYMFONY_PHPUNIT_VERSION" value="7.1"/>-->
+        <env name="KERNEL_CLASS" value="PrismaMedia\Metrics\Tests\Bundle\App\TestKernel" />
         <env name="APP_ENV" value="test"/>
         <env name="SHELL_VERBOSITY" value="0"/>
     </php>
 
     <testsuites>
-        <testsuite name="PrismaMedia MetricsBundle Test Suite">
+        <testsuite name="PrismaMedia Metrics Test Suite">
             <directory>./tests/</directory>
+            <exclude>./tests/Bundle/App/</exclude>
         </testsuite>
     </testsuites>
 
@@ -26,7 +26,7 @@
         <whitelist>
             <directory>./src/</directory>
             <exclude>
-                <directory>./src/Resources</directory>
+                <directory>./src/Bundle/Resources</directory>
             </exclude>
         </whitelist>
     </filter>

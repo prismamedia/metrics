@@ -1,6 +1,6 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle;
+namespace PrismaMedia\Metrics;
 
 class MetricRenderer
 {

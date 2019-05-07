@@ -1,18 +1,18 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests;
+namespace PrismaMedia\Metrics\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PrismaMedia\MetricsBundle\Metric;
-use PrismaMedia\MetricsBundle\MetricAggregator;
-use PrismaMedia\MetricsBundle\MetricGenerator;
+use PrismaMedia\Metrics\Metric;
+use PrismaMedia\Metrics\MetricAggregator;
+use PrismaMedia\Metrics\MetricGenerator;
 
 class MetricAggregatorTest extends TestCase
 {
     public function testGetMetrics(): void
     {
         $metrics1 = new class() implements MetricGenerator {
-            public function getMetrics(): \Generator
+            public function getMetrics(): \Traversable
             {
                 yield new Metric('article_total', 42, ['brand' => 'capital']);
                 yield new Metric('article_total', 876, ['brand' => 'femmeactuelle', 'env' => 'conflict']);
@@ -20,14 +20,14 @@ class MetricAggregatorTest extends TestCase
         };
 
         $metrics2 = new class() implements MetricGenerator {
-            public function getMetrics(): \Generator
+            public function getMetrics(): \Traversable
             {
                 yield new Metric('app_total', 983);
             }
         };
 
         $metrics3 = new class() implements MetricGenerator {
-            public function getMetrics(): \Generator
+            public function getMetrics(): \Traversable
             {
                 if (false) {
                     yield;

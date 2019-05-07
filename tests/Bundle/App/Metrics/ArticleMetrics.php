@@ -1,16 +1,13 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests\App\Metrics;
+namespace PrismaMedia\Metrics\Tests\Bundle\App\Metrics;
 
-use PrismaMedia\MetricsBundle\Metric;
-use PrismaMedia\MetricsBundle\MetricGenerator;
+use PrismaMedia\Metrics\Metric;
+use PrismaMedia\Metrics\MetricGenerator;
 
 class ArticleMetrics implements MetricGenerator
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getMetrics(): \Generator
+    public function getMetrics(): \Traversable
     {
         yield new Metric('article_total', 42, ['brand' => 'Capital']);
         yield new Metric('article_total', 876, ['brand' => 'Femme Actuelle']);

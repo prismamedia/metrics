@@ -1,6 +1,6 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle;
+namespace PrismaMedia\Metrics\Bundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

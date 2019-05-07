@@ -1,6 +1,6 @@
 <?php
 
-namespace PrismaMedia\MetricsBundle\Tests;
+namespace PrismaMedia\Metrics\Tests\Bundle;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
