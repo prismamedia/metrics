@@ -1,9 +1,9 @@
 # Prometheus exporter for your own metrics
 
 This package is a Symfony bundle for [exporting metrics to Prometheus](https://prometheus.io/docs/instrumenting/writing_exporters/).
-Create your own `MetricGenerator` services to generate values on-demand en expose them under the `/metrics` endpoint.
+Create your own `MetricGenerator` services to generate values on-demand, the bundle  will expose them under the `/metrics` endpoint.
 
-*It does not expose any metric, you have to code your own.*
+*It does not provide any metric by default, you have to code your own.*
 
 ## Usage
 
@@ -34,10 +34,10 @@ metrics:
 
 ### Implement your own metric generator
 
-Your metrics are generated on demand by a class implementing
+Your metrics are generated on demand by a class implementing `PrismaMedia\Metrics\MetricGenerator` interface.
 
 The best practice is to create a distinct classes for distinct metric names.
-Each class can returns several values with distinct labels.
+Each class can return several values with distinct labels.
 
 In the following example, we expose a metric named `app_article_total`
 labelled with each `status`. In Prometheus (& Grafana), the values can be added
@@ -61,6 +61,9 @@ class ArticleCountMetric implements MetricGenerator
         $this->connection = $connection;
     }
 
+    /**
+     * @return Metric[]
+     */
     public function getMetrics(): \Traversable
     {
         // SELECT a.status, COUNT(*) as total FROM article GROUP BY a.status
