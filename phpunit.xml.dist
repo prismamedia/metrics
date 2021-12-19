@@ -11,6 +11,7 @@
     <env name="KERNEL_CLASS" value="PrismaMedia\Metrics\Tests\Bundle\App\TestKernel"/>
     <env name="APP_ENV" value="test"/>
     <env name="SHELL_VERBOSITY" value="0"/>
+    <env name="SYMFONY_DEPRECATIONS_HELPER" value="baselineFile=./tests/allowed.json"/>
   </php>
   <testsuites>
     <testsuite name="PrismaMedia Metrics Test Suite">
