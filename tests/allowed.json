@@ -1,0 +1,7 @@
+[
+    {
+        "location": "PrismaMedia\\Metrics\\Tests\\Bundle\\FunctionalTest::testEndpointMetrics",
+        "message": "Since symfony/framework-bundle 5.1: Not setting the \"framework.router.utf8\" configuration option is deprecated, it will default to \"true\" in version 6.0.",
+        "count": 1
+    }
+]
