@@ -12,10 +12,7 @@ class MetricAggregator implements MetricGenerator
      */
     private $metricGenerators;
 
-    /**
-     * @param \Traversable $metricGenerators
-     */
-    public function __construct(\Traversable $metricGenerators)
+    public function __construct(iterable $metricGenerators)
     {
         $this->metricGenerators = $metricGenerators;
     }
@@ -23,9 +20,13 @@ class MetricAggregator implements MetricGenerator
     /**
      * {@inheritdoc}
      */
-    public function getMetrics(): \Traversable
+    public function getMetrics(): iterable
     {
         foreach ($this->metricGenerators as $metricProvider) {
+            if ($metricProvider === $this) {
+                throw new \InvalidArgumentException('Cyclic dependency detected.');
+            }
+
             yield from $metricProvider->getMetrics();
         }
     }

@@ -4,11 +4,6 @@ namespace PrismaMedia\Metrics;
 
 class MetricRenderer
 {
-    /**
-     * @param Metric $metric
-     *
-     * @return string
-     */
     public function render(Metric $metric): string
     {
         $labels = '';

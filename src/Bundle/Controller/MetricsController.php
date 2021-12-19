@@ -6,17 +6,10 @@ use PrismaMedia\Metrics\MetricGenerator;
 use PrismaMedia\Metrics\MetricRenderer;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class MetricsController
+final class MetricsController
 {
-    /**
-     * @var MetricGenerator
-     */
-    protected $metrics;
-
-    /**
-     * @var MetricRenderer
-     */
-    private $metricRenderer;
+    private MetricGenerator $metrics;
+    private MetricRenderer $metricRenderer;
 
     public function __construct(MetricGenerator $metrics, MetricRenderer $metricRenderer)
     {
@@ -33,7 +26,6 @@ class MetricsController
         $response->setPrivate();
         $response->headers->addCacheControlDirective('no-cache');
         $response->headers->addCacheControlDirective('no-store');
-        $response->headers->addCacheControlDirective('must-revalidated');
 
         $response->setCallback(function () {
             foreach ($this->metrics->getMetrics() as $metric) {

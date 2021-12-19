@@ -5,7 +5,7 @@ namespace PrismaMedia\Metrics;
 interface MetricGenerator
 {
     /**
-     * @return \Traversable<Metric>
+     * @return iterable<Metric>
      */
-    public function getMetrics(): \Traversable;
+    public function getMetrics(): iterable;
 }

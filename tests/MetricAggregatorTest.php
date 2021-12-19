@@ -12,7 +12,7 @@ class MetricAggregatorTest extends TestCase
     public function testGetMetricsShouldMergeInjectedGenerators(): void
     {
         $metrics1 = new class() implements MetricGenerator {
-            public function getMetrics(): \Traversable
+            public function getMetrics(): iterable
             {
                 yield new Metric('article_total', 42, ['brand' => 'capital']);
                 yield new Metric('article_total', 876, ['brand' => 'femmeactuelle', 'env' => 'conflict']);
@@ -20,18 +20,16 @@ class MetricAggregatorTest extends TestCase
         };
 
         $metrics2 = new class() implements MetricGenerator {
-            public function getMetrics(): \Traversable
+            public function getMetrics(): iterable
             {
-                yield new Metric('app_total', 983);
+                return new \ArrayIterator([new Metric('app_total', 983)]);
             }
         };
 
         $metrics3 = new class() implements MetricGenerator {
-            public function getMetrics(): \Traversable
+            public function getMetrics(): iterable
             {
-                if (false) {
-                    yield;
-                }
+                return [];
             }
         };
 
@@ -39,7 +37,7 @@ class MetricAggregatorTest extends TestCase
 
         $metrics = $aggregator->getMetrics();
 
-        $this->assertInstanceOf('Generator', $metrics);
+        $this->assertInstanceOf(\Generator::class, $metrics);
         $this->assertCount(3, $metrics);
     }
 }

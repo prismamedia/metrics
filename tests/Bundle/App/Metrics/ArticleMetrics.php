@@ -7,7 +7,7 @@ use PrismaMedia\Metrics\MetricGenerator;
 
 class ArticleMetrics implements MetricGenerator
 {
-    public function getMetrics(): \Traversable
+    public function getMetrics(): iterable
     {
         yield new Metric('article_total', 42, ['brand' => 'Capital']);
         yield new Metric('article_total', 876, ['brand' => 'Femme Actuelle']);
