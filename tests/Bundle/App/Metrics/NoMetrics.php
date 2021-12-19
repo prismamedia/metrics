@@ -6,10 +6,8 @@ use PrismaMedia\Metrics\MetricGenerator;
 
 class NoMetrics implements MetricGenerator
 {
-    public function getMetrics(): \Traversable
+    public function getMetrics(): iterable
     {
-        if (false) {
-            yield;
-        }
+        return [];
     }
 }

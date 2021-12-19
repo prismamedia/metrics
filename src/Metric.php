@@ -27,7 +27,6 @@ final class Metric
     /**
      * @param string $name
      * @param mixed  $value
-     * @param array  $labels
      */
     public function __construct($name, $value, array $labels = [])
     {

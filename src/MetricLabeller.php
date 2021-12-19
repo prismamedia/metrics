@@ -18,8 +18,7 @@ class MetricLabeller implements MetricGenerator
     private $labels;
 
     /**
-     * @param MetricGenerator $metricProvider
-     * @param array           $labels         Labels to append to the metric
+     * @param array $labels Labels to append to the metric
      */
     public function __construct(MetricGenerator $metricProvider, array $labels)
     {

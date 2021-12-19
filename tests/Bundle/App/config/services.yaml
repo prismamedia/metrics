@@ -1,0 +1,13 @@
+framework:
+    secret: 'Chut!'
+    test: true
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    PrismaMedia\Metrics\Tests\Bundle\App\Metrics\:
+        resource: '../Metrics'
+        #tags:
+        #    - 'prisma_media.metric'

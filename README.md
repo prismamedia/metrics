@@ -82,19 +82,12 @@ class ArticleCountMetric implements MetricGenerator
 }
 ```
 
-Declare the service in Symfony with the tag `prisma_media.metric`.
-
-```yaml
-# config/services.yaml
-services:
-    App\Metrics\:
-        resource: '../src/Metrics'
-        tags: ['prisma_media.metric']
-```
+Declare the class as a service in you `config/services.yaml` or `config/services.php`.
+It will be automatically tagged `prisma_media.metric` and added to the aggregator.
 
 The `/metrics` endpoint will return something like this:
 
-```
+```console
 # curl https://localhost:8080/metrics
 app_article_total{status=published} 230
 app_article_total{status=review} 2

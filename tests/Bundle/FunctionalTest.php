@@ -6,14 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FunctionalTest extends WebTestCase
 {
-    public function test_endpoint_metrics(): void
+    /**
+     * Requires Symfony 5.4+
+     */
+    public function testEndpointMetrics(): void
     {
         $client = static::createClient();
+        $client->catchExceptions(false);
 
         ob_start();
         $client->request('GET', '/metrics');
         $content = ob_get_contents();
         ob_end_clean();
+
+        $this->assertResponseIsSuccessful();
 
         $expected =
             "article_total{brand=\"Capital\"} 42\r\n".
