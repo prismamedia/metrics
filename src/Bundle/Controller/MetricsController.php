@@ -4,7 +4,7 @@ namespace PrismaMedia\Metrics\Bundle\Controller;
 
 use PrismaMedia\Metrics\MetricGenerator;
 use PrismaMedia\Metrics\MetricRenderer;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 final class MetricsController
 {
@@ -17,22 +17,16 @@ final class MetricsController
         $this->metricRenderer = $metricRenderer;
     }
 
-    public function __invoke(): StreamedResponse
+    public function __invoke(): Response
     {
-        $response = new StreamedResponse();
-        $response->headers->set('Content-Type', 'text/plain; charset=utf-8');
+        $content = '';
+        foreach ($this->metrics->getMetrics() as $metric) {
+            $content .= $this->metricRenderer->render($metric);
+        }
 
-        // No cache
-        $response->setPrivate();
-        $response->headers->addCacheControlDirective('no-cache');
-        $response->headers->addCacheControlDirective('no-store');
-
-        $response->setCallback(function () {
-            foreach ($this->metrics->getMetrics() as $metric) {
-                echo $this->metricRenderer->render($metric);
-            }
-        });
-
-        return $response;
+        return new Response($content, 200, [
+            'Content-Type' => 'text/plain; charset=utf-8',
+            'Cache-Control' => 'private, no-cache, no-store',
+        ]);
     }
 }

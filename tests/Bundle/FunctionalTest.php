@@ -14,10 +14,8 @@ class FunctionalTest extends WebTestCase
         $client = static::createClient();
         $client->catchExceptions(false);
 
-        ob_start();
         $client->request('GET', '/metrics');
-        $content = ob_get_contents();
-        ob_end_clean();
+        $content = $client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
 
