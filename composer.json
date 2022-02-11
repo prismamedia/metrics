@@ -3,7 +3,7 @@
     "description": "Prometheus metrics exporter",
     "keywords": ["metrics", "prometheus", "bundle"],
     "type": "symfony-bundle",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Prisma Media",
