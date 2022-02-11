@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PrismaMedia\Metrics\Bundle\DependencyInjection;
 
 use PrismaMedia\Metrics\Bundle\PrismaMediaMetricsBundle;

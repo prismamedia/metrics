@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PrismaMedia\Metrics\Tests\Bundle\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
