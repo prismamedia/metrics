@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PrismaMedia\Metrics\Tests\Bundle;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -7,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class FunctionalTest extends WebTestCase
 {
     /**
-     * Requires Symfony 5.4+
+     * Requires Symfony 5.4+.
      */
     public function testEndpointMetrics(): void
     {
