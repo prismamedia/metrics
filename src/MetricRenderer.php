@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PrismaMedia\Metrics;
+
+use function sprintf;
 
 class MetricRenderer
 {
@@ -13,6 +17,6 @@ class MetricRenderer
             }, array_keys($metric->getLabels()), $metric->getLabels())));
         }
 
-        return sprintf("%s%s %s\r\n", $metric->getName(), $labels, $metric->getValue());
+        return sprintf("%s%s %s\n", $metric->getName(), $labels, $metric->getValue());
     }
 }

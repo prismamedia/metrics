@@ -20,9 +20,9 @@ class FunctionalTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $expected =
-            "article_total{brand=\"Capital\"} 42\r\n".
-            "article_total{brand=\"Femme Actuelle\"} 876\r\n".
-            "article_total{brand=\"Télé-Loisirs\"} 381\r\n";
+            "article_total{brand=\"Capital\"} 42\n".
+            "article_total{brand=\"Femme Actuelle\"} 876\n".
+            "article_total{brand=\"Télé-Loisirs\"} 381\n";
         $this->assertSame($expected, $content);
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
