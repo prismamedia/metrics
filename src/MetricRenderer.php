@@ -17,6 +17,6 @@ class MetricRenderer
             }, array_keys($metric->getLabels()), $metric->getLabels())));
         }
 
-        return sprintf("%s%s %s\n", $metric->getName(), $labels, $metric->getValue());
+        return sprintf("%s%s %s \n", $metric->getName(), $labels, $metric->getValue());
     }
 }
