@@ -40,6 +40,6 @@ class MetricAggregatorTest extends TestCase
         $metrics = $aggregator->getMetrics();
 
         $this->assertInstanceOf(\Generator::class, $metrics);
-        $this->assertCount(3, $metrics);
+        $this->assertEquals(3, iterator_count($metrics));
     }
 }

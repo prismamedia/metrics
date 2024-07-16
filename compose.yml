@@ -1,0 +1,36 @@
+x-params:
+    - &common
+        environment:
+            XDEBUG_MODE: coverage
+        volumes:
+            - ./:/app
+        command:
+            - sh
+            - -c
+            - 'rm -f composer.lock && rm -rf tests/Bundle/App/var/cache && composer install && vendor/bin/simple-phpunit --coverage-text'
+            
+# To run test just exec e.g. 'docker compose run --rm php8.1'
+services:
+    php8.1:
+        build:
+            context: .
+            target: php
+            args:
+                PHP_VERSION: 8.1
+        <<: *common
+            
+    php8.2:
+        build:
+            context: .
+            target: php
+            args:
+                PHP_VERSION: 8.2
+        <<: *common
+            
+    php8.3:
+        build:
+            context: .
+            target: php
+            args:
+                PHP_VERSION: 8.3
+        <<: *common

@@ -25,7 +25,7 @@ class MetricLabellerTest extends TestCase
         $labeller = new MetricLabeller($metrics, ['env' => 'staging']);
 
         $this->assertInstanceOf(\Generator::class, $labeller->getMetrics());
-        $this->assertCount(3, $labeller->getMetrics());
+        $this->assertEquals(3, iterator_count($labeller->getMetrics()));
         $metrics = iterator_to_array($labeller->getMetrics());
 
         $this->assertSame('article_total', $metrics[0]->getName());

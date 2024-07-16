@@ -3,5 +3,20 @@
         "location": "PrismaMedia\\Metrics\\Tests\\Bundle\\FunctionalTest::testEndpointMetrics",
         "message": "Since symfony/framework-bundle 5.1: Not setting the \"framework.router.utf8\" configuration option is deprecated, it will default to \"true\" in version 6.0.",
         "count": 1
+    },
+    {
+      "location": "PrismaMedia\\Metrics\\Tests\\Bundle\\FunctionalTest::testEndpointMetrics",
+      "message": "Since symfony/framework-bundle 6.1: Not setting the \"framework.http_method_override\" config option is deprecated. It will default to \"false\" in 7.0.",
+      "count": 2
+    },
+    {
+      "location": "PrismaMedia\\Metrics\\Tests\\Bundle\\FunctionalTest::testEndpointMetrics",
+      "message": "Since symfony/framework-bundle 6.4: Not setting the \"framework.handle_all_throwables\" config option is deprecated. It will default to \"true\" in 7.0.",
+      "count": 2
+    },
+    {
+      "location": "PrismaMedia\\Metrics\\Tests\\Bundle\\FunctionalTest::testEndpointMetrics",
+      "message": "Since symfony/framework-bundle 6.4: Not setting the \"framework.php_errors.log\" config option is deprecated. It will default to \"true\" in 7.0.",
+      "count": 2
     }
 ]
