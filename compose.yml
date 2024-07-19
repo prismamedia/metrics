@@ -3,11 +3,15 @@ x-params:
         environment:
             XDEBUG_MODE: coverage
         volumes:
-            - ./:/app
+            - ./src/:/app/src:ro
+            - ./tests/:/app/tests:ro
+            - ./composer.json/:/app/composer.json:ro
+            - ./phpunit.xml.dist/:/app/phpunit.xml.dist:ro
+            - /app/tests/Bundle/App/var # anonymous writable volume for cache/logs 
         command:
             - sh
             - -c
-            - 'rm -f composer.lock && rm -rf tests/Bundle/App/var/cache && composer install && vendor/bin/simple-phpunit --coverage-text'
+            - 'composer install && vendor/bin/simple-phpunit --coverage-text'
             
 # To run test just exec e.g. 'docker compose run --rm php8.1'
 services:
