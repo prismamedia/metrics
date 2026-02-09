@@ -1,2 +1,2 @@
 metrics:
-    resource: '@PrismaMediaMetricsBundle/Resources/config/routes.xml'
+    resource: '@PrismaMediaMetricsBundle/Resources/config/routes.php'

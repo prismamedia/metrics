@@ -29,7 +29,7 @@ Import routing file
 ```yaml
 # config/routes.yaml
 metrics:
-    resource: '@PrismaMediaMetricsBundle/Resources/config/routes.xml'
+    resource: '@PrismaMediaMetricsBundle/Resources/config/routes.php'
 ```
 
 ### Implement your own metric generator
